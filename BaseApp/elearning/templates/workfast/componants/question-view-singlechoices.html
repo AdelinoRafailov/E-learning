@@ -1,0 +1,100 @@
+<style>
+  .selection-area:hover {
+    background-color: white !important;
+    border: 1px solid #f4f2f2;
+    transition: 1s;
+    cursor: pointer;
+  }
+
+  .form-check-label {
+    font-size: 20px;
+  }
+
+  .answerbtn:hover {
+    background-color: black !important;
+    transition: 1s;
+  }
+</style>
+
+<div class="bg-light" style="height: 100%; padding-top: 3%">
+  <div class="container bg-light">
+    <h1>{{question.question}}</h1>
+  </div>
+  <div class="container" style="margin-left: 7%; margin-top: 3%; height: 100%">
+    <div style="background: #f4f2f2; border-radius: 17px; margin-top: 2px" class="selection-area">
+      <div class="form-check selection-container" style="padding: 2%; margin-left: 6%">
+        <input id="formCheck-2" class="form-check-input" type="checkbox" value="{{answers.optionI}}" {% if question_taken.answer == answers.optionI %} checked {% endif %} />
+        <label class="form-check-label" for="formCheck-2">{{answers.optionI}}</label>
+      </div>
+    </div>
+    <div style="background: #f4f2f2; border-radius: 17px; margin-top: 2px" class="selection-area">
+      <div class="form-check selection-container" style="padding: 2%; margin-left: 6%">
+        <input id="formCheck-1" class="form-check-input" type="checkbox" value="{{answers.optionII}}" {% if question_taken.answer == answers.optionII %} checked {% endif %} />
+        <label class="form-check-label" for="formCheck-1">{{answers.optionII}}</label>
+      </div>
+    </div>
+
+    <div style="background: #f4f2f2; border-radius: 17px; margin-top: 2px" class="selection-area">
+      <div class="form-check selection-container" style="padding: 2%; margin-left: 6%">
+        <input id="formCheck-4" class="form-check-input" type="checkbox" value="{{answers.optionIII}}" {% if question_taken.answer == answers.optionIII %} checked {% endif %} />
+        <label class="form-check-label" for="formCheck-4">{{answers.optionIII}}</label>
+      </div>
+    </div>
+    <div style="background: #f4f2f2; border-radius: 17px; margin-top: 2px" class="selection-area">
+      <div class="form-check selection-container" style="padding: 2%; margin-left: 6%">
+        <input id="formCheck-4" class="form-check-input" type="checkbox" value="{{answers.optionIIII}}" {% if question_taken.answer == answers.optionIIII %} checked {% endif %} />
+        <label class="form-check-label" for="formCheck-3">{{answers.optionIIII}}</label>
+      </div>
+    </div>
+    <div style="text-align: center; margin-top: 2%">
+      <button style="font-size: 30px; background-color: #3b8eea; width: 30%; height: 70px" class="btn text-light shadow-lg answerbtn" type="button" id="submit">Next</button>
+    </div>
+
+    {% include 'workfast/componants/quiz-progress.html' %}
+  </div>
+
+  <script>
+
+
+    $(".selection-container").on("click", function () {
+      $(".form-check-input").each(function () {
+        $(this).prop("checked", false);
+      });
+      var checkbox = $(this).children('input[type="checkbox"]');
+      checkbox.prop("checked", !checkbox.prop("checked"));
+    });
+
+    //  $(".martial").on("click", function () {
+    $("#submit").on("click", function () {
+      $(".form-check-input").each(function () {
+        if ($(this).prop("checked")) {
+          var answer = $(this).attr("value");
+          $.ajax({
+            type: "POST",
+            url: "{% url 'course_service' %}",
+            headers: {
+              "X-Requested-With": "XMLHttpRequest",
+            },
+            data: {
+              action: "saveQuestionAnswers",
+              answerId: answer,
+              questionid: "{{question.id}}",
+              csrfmiddlewaretoken: getCookie("csrftoken"),
+            },
+            success: function (response) {
+              console.log("test");
+              $(".next").click();
+            },
+            error: function (response) {
+              console.log("test");
+            },
+          });
+        }
+      });
+
+      // $(".next").click();
+    });
+  </script>
+
+
+</div>

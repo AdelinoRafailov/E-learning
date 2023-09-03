@@ -1,0 +1,170 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
+    <title>elearning</title>
+    <link rel="stylesheet" href="{% static 'workfast/assets/bootstrap/css/bootstrap.min.css' %}" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Aclonica&amp;display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Adamina&amp;display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Aguafina+Script&amp;display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Akaya+Kanadaka&amp;display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Akaya+Telivigala&amp;display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Aldrich&amp;display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web:400,600,700" />
+    <link rel="stylesheet" href="{% static 'workfast/assets/css/Animated-Typing-With-Blinking.css' %}" />
+    <link rel="stylesheet" href="{% static 'workfast/assets/css/Button-Change-Text-on-Hover.css' %}" />
+    <link rel="stylesheet" href="{% static 'workfast/assets/css/Carousel_Image_Slider-mycarousel.css' %}" />
+    <link rel="stylesheet" href="{% static 'workfast/assets/css/Carousel_Image_Slider.css' %}" />
+    <link rel="stylesheet" href="{% static 'workfast/assets/css/Collapsible-Sidebar.css' %}" />
+    <link rel="stylesheet" href="{% static 'workfast/assets/css/Hero-Carousel-images.css' %}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/css/swiper.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'workfast/assets/css/Login-Center.css' %}" />
+    <link rel="stylesheet" href="{% static 'workfast/assets/css/Navbar-Right-Links-icons.css' %}" />
+    <link rel="stylesheet" href="{% static 'workfast/assets/css/Off-Canvas-Sidebar-Drawer-Navbar.css' %}" />
+    <link rel="stylesheet" href="{% static 'workfast/assets/css/Search-Input-responsive.css' %}" />
+    <link rel="stylesheet" href="{% static 'workfast/assets/css/Sidebar-Menu-sidebar.css' %}" />
+    <link rel="stylesheet" href="{% static 'workfast/assets/css/Sidebar-Menu.css' %}" />
+    <link rel="stylesheet" href="{% static 'workfast/assets/css/Simple-Slider-Simple-Slider.css' %}" />
+    <link rel="stylesheet" href="{% static 'workfast/assets/css/Video-Responsive.css' %}" />
+    <style>
+      .course:hover {
+        color: white;
+        transition: 0.9s;
+      }
+
+      .course:hover {
+        color: white;
+        transition: 0.9s;
+      }
+      .course:hover .course-body {
+        color: white;
+        background-color: black !important;
+        transition: 0.9s;
+      }
+      .course-body:hover {
+        background-color: black !important;
+        transition: 0.9s;
+      }
+    </style>
+  </head>
+
+  <body>
+    {% include 'workfast/com/navbar.html' %}
+
+    <div class="container" style="margin-top: 4%">
+      <div class="row">
+        <div class="col-md-6">
+          <h1 class="text-center" style="margin-left: 0">Hi, {{request.user.username}}</h1>
+        </div>
+        <div class="col-md-6">
+          <div class="text-center" style="width: 100%; padding-top: 10px">
+            <a href="{% url 'profile' %}" class="btn btn-outline-info text-right border rounded-pill border-info shadow" type="button" style="margin-right: 0">View Profile</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="background: rgba(241, 241, 241, 0)">
+      <div class="bg-dark">
+        <div class="container text-center" style="margin-top: 10%; padding-top: 3%">
+          <h1 class="text-light">Courses<br /></h1>
+          <div class="text-center">
+            <div>
+              {% comment %} <button class="btn btn-outline-info border rounded-pill option-selection" type="button">All</button> {% endcomment %}
+              {% comment %} <button class="btn btn-outline-light rounded-pill option-selection" type="button" style="border-width: 0px">Enrol</button> {% endcomment %}
+              {% comment %} <button class="btn btn-outline-light rounded-pill option-selection" type="button" style="border-width: 0px">Completed</button> {% endcomment %}
+            </div>
+          </div>
+        </div>
+        <div class="text-center" style="width: 100%; margin-top: 24px; padding-bottom: 3%">
+          <input class="border rounded-pill shadow" type="text" style="font-size: 30px; width: 398.6px; text-align: center" placeholder="Search" />
+        </div>
+      </div>
+
+      <div class="container py-4 py-xl-5">
+        <div class="row row-cols-1 row-cols-md-2 row-cols-xl-4 list-of-course" id="course-container">
+          {% for course in courses %}
+          <div class="col mb-4 text-left course" style="padding: 1px">
+            <a href="{% url 'course_details' course.id %}">
+              <div class="card border rounded" style="height: 100%">
+                <img class="card-img-top w-100 d-block fit-cover" src="{{course.img}}" style="padding: 56px" />
+                <div class="progress border rounded-0" style="font-size: 12px; height: 15px; border-style: solid; border-color: rgb(255, 255, 255)">
+                  <div class="progress-bar bg-info" aria-valuenow="{{course.progress}}" aria-valuemin="0" aria-valuemax="100" style="width: {{course.progress}}%">{{course.progress}}%</div>
+                </div>
+                <div class="card-body p-4 course-body" style="background: #e2e2e2">
+                  <h4 class="font-weight-bold card-title">{{course.name}}</h4>
+                  <p class="card-text">{{ course.shortdes }}</p>
+                </div>
+              </div>
+            </a>
+          </div>
+          {% endfor %} {% comment %} Course card end {% endcomment %}
+        </div>
+        <div class="text-center text-info" style="width: 100%">
+          <button class="btn btn-outline-info border rounded-pill" type="button" id="more">More</button>
+        </div>
+      </div>
+    </div>
+
+    {% include 'workfast/com/footer.html' %}
+
+    <script src="{% static 'workfast/assets/js/jquery.min.js' %}"></script>
+    <script src="{% static 'workfast/assets/bootstrap/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'workfast/assets/js/bs-init.js' %}"></script>
+    <script src="{% static 'workfast/assets/js/Off-Canvas-Sidebar-Drawer-Navbar.js' %}"></script>
+    <script src="{% static 'workfast/assets/js/Off-Canvas-Sidebar-Drawer-Navbar-1.js' %}"></script>
+    <script src="{% static 'workfast/assets/js/Animated-Typing-With-Blinking.js' %}"></script>
+    <script src="{% static 'workfast/assets/js/Collapsible-Sidebar.js' %}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js' %}/1.14.0/umd/popper.min.js' %}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/js/swiper.jquery.min.js' %}"></script>
+    <script src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js' %}"></script>
+    <script src="{% static 'workfast/assets/js/Sidebar-Menu.js' %}"></script>
+    <script src="{% static 'workfast/assets/js/Simple-Slider.js' %}"></script>
+
+    <script>
+      $(document).ready(function () {
+        var view = 100;
+
+        //More button and details
+        $("#more").on("click", function () {
+          $("#more").html('<div class="spinner-border spinner-border-sm" role="status"><span class="sr-only"></span></div>');
+          $.ajax({
+            type: "GET",
+            url: "{% url 'course_service' %}",
+            headers: {
+              "X-Requested-With": "XMLHttpRequest",
+            },
+            data: {
+              csrfmiddlewaretoken: "{{ csrf_token }}",
+              action: "getCourse",
+              limit: view,
+            },
+            success: function (response) {
+              $("#course-container").html(response.content).hide().fadeIn('slow');
+              view += 10;
+              $("#more").html("More");
+            },
+            error: function (response) {
+              alert("error");
+              $("#more").html("More");
+            },
+          });
+        });
+      });
+
+      $(document).ready(function () {
+        $(".option-selection").on("click", function () {
+          $(".option-selection").each(function () {
+            $(this).removeClass("btn-outline-info");
+          });
+          $(".option-selection").each(function () {
+            $(this).addClass("btn-outline-light");
+          });
+          $(this).removeClass("btn-outline-light");
+          $(this).addClass("btn-outline-info");
+        });
+      });
+    </script>
+  </body>
+</html>

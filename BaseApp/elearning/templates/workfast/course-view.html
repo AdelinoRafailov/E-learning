@@ -1,0 +1,563 @@
+{% load static %} {% load custom_tags %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
+  <title>{{ course_data.name }}</title>
+  <link rel="stylesheet" href="{% static 'workfast/assets/bootstrap/css/bootstrap.min.css' %}" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Aclonica&amp;display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Adamina&amp;display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Aguafina+Script&amp;display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Akaya+Kanadaka&amp;display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Akaya+Telivigala&amp;display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Aldrich&amp;display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web:400,600,700" />
+  <link rel="stylesheet" href="{% static 'workfast/assets/fonts/fontawesome-all.min.css' %}" />
+  <link rel="stylesheet" href="{% static 'workfast/assets/fonts/font-awesome.min.css' %}" />
+  <link rel="stylesheet" href="{% static 'workfast/assets/fonts/fontawesome5-overrides.min.css' %}" />
+  <link rel="stylesheet" href="{% static 'workfast/assets/css/Animated-Typing-With-Blinking.css' %}" />
+  <link rel="stylesheet" href="{% static 'workfast/assets/css/Button-Change-Text-on-Hover.css' %}" />
+  <link rel="stylesheet" href="{% static 'workfast/assets/css/Carousel_Image_Slider-mycarousel.css' %}" />
+  <link rel="stylesheet" href="{% static 'workfast/assets/css/Carousel_Image_Slider.css' %}" />
+  <link rel="stylesheet" href="{% static 'workfast/assets/css/Collapsible-Sidebar.css' %}" />
+  <link rel="stylesheet" href="{% static 'workfast/assets/css/Hero-Carousel-images.css' %}" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/css/swiper.min.css" />
+  <link rel="stylesheet" href="{% static 'workfast/assets/css/Login-Center.css' %}" />
+  <link rel="stylesheet" href="{% static 'workfast/assets/css/Navbar-Right-Links-icons.css' %}" />
+  <link rel="stylesheet" href="{% static 'workfast/assets/css/Off-Canvas-Sidebar-Drawer-Navbar.css' %}" />
+  <link rel="stylesheet" href="{% static 'workfast/assets/css/Search-Input-responsive.css' %}" />
+  <link rel="stylesheet" href="{% static 'workfast/assets/css/Sidebar-Menu-sidebar.css' %}" />
+  <link rel="stylesheet" href="{% static 'workfast/assets/css/Sidebar-Menu.css' %}" />
+  <link rel="stylesheet" href="{% static 'workfast/assets/css/Simple-Slider-Simple-Slider.css' %}" />
+  <link rel="stylesheet" href="{% static 'workfast/assets/css/Video-Responsive.css' %}" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.all.min.js"></script>
+  <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.min.css'>
+  </link>
+  <style>
+  
+
+    .active {
+      color: white !important;
+      background-color: #78786f;
+    }
+
+    .navbar {
+      margin-bottom: 0px;
+    }
+
+    #content {
+      padding: 0px;
+      margin: 0px;
+      background-color: black;
+    }
+
+    video {
+      width: 90%;
+    }
+
+    @media only screen and (max-width: 600px) {
+      video {
+        margin-top: 20%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  {% comment %} {% endcomment %}
+  <input hidden value="{{course_data.id}}" id="courseId" />
+  {% comment %} {% endcomment %}
+  <div class="wrapper">
+    <!-- Sidebar Holder -->
+    <nav id="sidebar">
+      <div class="sidebar-header bg-dark text-light text-center">
+        <img src="{{ course_data.img.url }}" width="50" />
+        <h5>{{ course_data.name }}</h5>
+        <!--       Progress Bar       -->
+        <div id="progress">
+          <div class="progress">
+            {% comment %}
+            <div class="progress-bar bg-info" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%">0%</div>
+            {% endcomment %}
+          </div>
+        </div>
+        <!--       Progress Bar       -->
+      </div>
+
+      <ul class="list-unstyled components bg-light">
+
+        <div class="lecture-section">
+          {% comment %} lecture sections start {% endcomment %}
+          {% for lecture in lecture_data %}
+          <li>
+            <a id="lecture{{forloop.counter}}" href="#homeSubmenu{{ lecture.id }}" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+              <!-- Icon -->
+              <svg class="bi bi-record-circle-fill text-info" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-8 3a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"></path>
+              </svg>
+              <!-- Icon -->
+              {{ lecture.name }}</a>
+            <ul class="collapse list-unstyled" id="homeSubmenu{{ lecture.id }}">
+              {% for LectureMaterial in lecture.getMaterial %}
+              <li>
+                <a href="#" class="martial" martialId="{{ LectureMaterial.id }}">
+                  <!-- Icon -->
+
+                  <svg class="bi bi-record-circle-fill {% getStatus request.user LectureMaterial.id 'matrial' %}" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-8 3a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"></path>
+                  </svg>
+
+                  <!-- Icon -->{{ LectureMaterial.name }}</a>
+              </li>
+              {% endfor %}
+            </ul>
+          </li>
+          {% endfor %}
+        </div>
+
+
+        {% comment %} lecture section ends {% endcomment %}
+
+        {% comment %} Question section start {% endcomment %}
+        <div class="questions-section">
+          <li>
+            <a id="lecture" href="#homeSubmenu" data-toggle="collapse" aria-expanded="True" class="dropdown-toggle">
+              <!-- Icon -->
+              <svg class="bi bi-record-circle-fill text-info" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-8 3a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"></path>
+              </svg>
+              <!-- Icon -->
+              Quiz</a>
+            <ul class="collapse list-unstyled show" id="homeSubmenu">
+              {% for q in question %}
+              <li>
+                <a href="#" class="question" questionId="{{ q.id }}">
+                  <!-- Icon -->
+                  <svg class="bi bi-record-circle-fill {% getStatus request.user q.id 'question' %}" xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-8 3a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"></path>
+                  </svg> {{q.question}}</a>
+              </li>
+              {% endfor %}
+
+              <li>
+                <a href="#" class="result" courseId="{{ course_data.id }}">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-patch-exclamation-fill" viewBox="0 0 16 16">
+                    <path d="M10.067.87a2.89 2.89 0 0 0-4.134 0l-.622.638-.89-.011a2.89 2.89 0 0 0-2.924 2.924l.01.89-.636.622a2.89 2.89 0 0 0 0 4.134l.637.622-.011.89a2.89 2.89 0 0 0 2.924 2.924l.89-.01.622.636a2.89 2.89 0 0 0 4.134 0l.622-.637.89.011a2.89 2.89 0 0 0 2.924-2.924l-.01-.89.636-.622a2.89 2.89 0 0 0 0-4.134l-.637-.622.011-.89a2.89 2.89 0 0 0-2.924-2.924l-.89.01-.622-.636zM8 4c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995A.905.905 0 0 1 8 4zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+                  </svg>Result</a>
+              </li>
+            </ul>
+          </li>
+
+
+        </div>
+      </ul>
+
+
+      {% comment %} question section end {% endcomment %}
+
+      <div class="text-center">
+        
+        <button id="toggleMenu" class="btn btn-lg btn-outline-info">Start Test</button>
+      </div>
+
+
+
+      <div id="social-icons-sb" class="text-center" style="display: none">
+        <a class="btn btn-social-icon btn-facebook"><i class="fab fa-facebook"></i></a>
+        <a class="btn btn-social-icon btn-instagram"><i class="fab fa-instagram"></i></a>
+        <a class="btn btn-social-icon btn-twitter"><i class="fab fa-twitter"></i></a>
+      </div>
+
+      <ul class="list-unstyled CTAs" style="display: none">
+        <li>
+          <a href="https://www.muppers.com/sign-in" class="sign-in">Sign in</a>
+        </li>
+        <li>
+          <a href="https://www.muppers.com/sign-up" class="sign-up">Sign up</a>
+        </li>
+      </ul>
+    </nav>
+
+    <div id="content">
+      <nav class="navbar navbar-expand-lg navbar-light bg-info">
+        <div class="container-fluid">
+          <button type="button" id="sidebarCollapse" class="navbar-btn btn-outline-dark">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+          <!--                  custom btn-->
+          <button class="btn btn-sm btn-outline-dark previous" style="margin-left: 1%">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left-circle" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z" />
+            </svg>
+            Previous
+          </button>
+          <button class="btn btn-sm btn-outline-dark next" style="margin-left: 1%">
+            Next
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-circle" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z" />
+            </svg>
+          </button>
+          <a href="{% url 'profile' %}" class="btn btn-sm btn-outline-light" style="margin-left: 1%">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
+              <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4Zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10Z" />
+            </svg>
+            Profile</a>
+          <button id="button-logo" class="d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <a href="https://www.muppers.com"><img src="{% static 'workfast/assets/img/muppers-logo.png" width="40em" height="40em" /></a>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="nav navbar-nav ml-auto">
+              <li class="nav-item active">
+                <a class="nav-link" href="https://www.muppers.com">
+                  <!--                            next btn  -->
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Page Content Holder -->
+      <div id="backendView" style="height: 80%">
+        {% comment %}
+        <div id="app" style="margin-bottom: 1px; text-align: center; background-color: black">
+          <div style="margin-top: 0%; margin-left: 0%">
+            <div class="container">
+              <img style="width: 100%" src="{% static 'workfast/img.jpeg' %}" />
+            </div>
+          </div>
+        </div>
+        {% endcomment %}
+      </div>
+      <!-- Page Content Holder -->
+
+      <footer id="footerpad" style="display: none">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6 col-lg-8 mx-auto">
+              <ul class="list-inline text-center">
+                <li class="list-inline-item">
+                  <a id="social-footer-icon-facebook" href="#"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i><i class="fab fa-facebook fa-stack-1x fa-inverse"></i></span></a>
+                </li>
+                <li class="list-inline-item">
+                  <a id="social-footer-icon-twitter" href="#"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i><i class="fab fa-twitter fa-stack-1x fa-inverse"></i></span></a>
+                </li>
+                <li class="list-inline-item">
+                  <a id="social-footer-icon-instagram" href="#"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i><i class="fab fa-instagram fa-stack-1x fa-inverse"></i></span></a>
+                </li>
+                <li class="list-inline-item">
+                  <a id="social-footer-icon-whatsapp" href="#"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i><i class="fab fa-whatsapp fa-stack-1x fa-inverse"></i></span></a>
+                </li>
+              </ul>
+              <p class="copyright text-muted text-center">Copyright © Muppers 2021</p>
+              <p class="text-muted text-center px-1">Desarrollado por <a id="powered-by" href="https://muppers.com" target="_blank">Muppers</a></p>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </div>
+  <script src="{% static 'workfast/assets/js/jquery.min.js' %}"></script>
+  <script src="{% static 'workfast/assets/bootstrap/js/bootstrap.min.js' %}"></script>
+  <script src="{% static 'workfast/assets/js/bs-init.js' %}"></script>
+  <script src="{% static 'workfast/assets/js/Off-Canvas-Sidebar-Drawer-Navbar.js' %}"></script>
+  <script src="{% static 'workfast/assets/js/Off-Canvas-Sidebar-Drawer-Navbar-1.js' %}"></script>
+  <script src="{% static 'workfast/assets/js/Animated-Typing-With-Blinking.js' %}"></script>
+  <script src="{% static 'workfast/assets/js/Collapsible-Sidebar.js' %}"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js' %}/1.14.0/umd/popper.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/js/swiper.jquery.min.js"></script>
+  <script src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js"></script>
+  <script src="{% static 'workfast/assets/js/Sidebar-Menu.js' %}"></script>
+  <script src="{% static 'workfast/assets/js/Simple-Slider.js' %}"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.all.min.js"></script>
+
+  <script>
+
+    function getCookie(cname) {
+      let name = cname + "=";
+      let decodedCookie = decodeURIComponent(document.cookie);
+      let ca = decodedCookie.split(";");
+      for (let i = 0; i < ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0) == " ") {
+          c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+          return c.substring(name.length, c.length);
+        }
+      }
+      return "";
+    }
+
+    function toggelActiveClass(activeItem) {
+      activeItem.find("svg").removeClass('text-info');
+      activeItem.find("svg").removeClass('text-dark');
+      activeItem.find("svg").addClass('text-info');
+    }
+
+    $(document).ready(function () {
+      getSingleCourseProgressPerUser();
+      selectFirstLeacture()
+      $('.questions-section').hide()
+      //   updateSingleCourseProgressPerUser();
+    });
+
+
+
+    $('#toggleMenu').on("click", function () {
+      $('.questions-section').toggle();
+      $('.lecture-section').toggle();
+
+    })
+
+    function selectFirstLeacture() {
+      $('#lecture1').click();
+    }
+
+    //swal("Have a nice day!");
+    $(".next").on("click", function () {
+      getSingleCourseProgressPerUser();
+      var activeItem = $(".active");
+      updateSingleCourseProgressPerUser(activeItem.attr("martialId"))
+
+      toggelActiveClass(activeItem);
+
+
+      if (activeItem.parent().next("li").length) {
+        activeItem.removeClass("active");
+        activeItem.parent().next("li").find("a").addClass("active");
+        activeItem.parent().next("li").find("a").click();
+        //$('.active').click();
+      }
+    });
+
+    $(".previous").on("click", function () {
+      var activeItem = $(".active");
+      getSingleCourseProgressPerUser();
+      updateSingleCourseProgressPerUser(activeItem.attr("martialId"));
+
+
+      toggelActiveClass(activeItem)
+
+
+      //alert(activeItem.attr("martialid"))
+      if (activeItem.parent().prev("li").length) {
+        activeItem.removeClass("active");
+        activeItem.parent().prev("li").find("a").addClass("active");
+        activeItem.parent().prev("li").find("a").click();
+        //$('.active').click();
+      }
+    });
+
+    //svg
+    //
+
+    $(".question").on("click", function () {
+      //   alert("question clicked")
+      var activeItem = $(".active");
+
+      // getSingleCourseProgressPerUser();
+      // getQuestionDetails($(this).attr("questionId"))
+
+      toggelActiveClass(activeItem)
+
+      $(".question").each(function (i, obj) {
+        $(this).removeClass("active");
+      });
+      $(this).addClass("active");
+
+
+      $.ajax({
+        type: "GET",
+        url: "{% url 'course_service' %}",
+        headers: {
+          "X-Requested-With": "XMLHttpRequest",
+
+        },
+        data: {
+          action: "getQuestion",
+          questionId: $(this).attr("questionId"),
+          //csrfmiddlewaretoken: "{{ csrf_token }}",
+        },
+        success: function (response) {
+          //  alert(response.content);
+          console.log("content served");
+          console.log(response.content);
+          $("#backendView").html(response.content);
+        },
+        error: function (response) {
+          // alert(response);
+        },
+      });
+
+
+    });
+
+
+    function getQuestionDetails(questionId) {
+      console.log("getQuestionDetails");
+      $.ajax({
+        type: "GET",
+        url: "{% url 'course_service' %}",
+        headers: {
+          "X-Requested-With": "XMLHttpRequest",
+        },
+        data: {
+          action: "updateSingleCourseProgressPerUser",
+          courseId: courseId,
+          userId: "{{ request.user.id }}",
+          csrfmiddlewaretoken: "{{ csrf_token }}",
+        },
+        success: function (response) {
+          //  alert(response.content);
+          console.log("content served");
+          console.log(response.content);
+          $('#progress').html(response.content);
+        },
+        error: function (response) {
+          console.log("error")
+        },
+      });
+    }
+
+
+    $(".martial").on("click", function () {
+      console.log("send ajax");
+      var activeItem = $(".active");
+
+      getSingleCourseProgressPerUser();
+      updateSingleCourseProgressPerUser(activeItem.attr("martialId"))
+
+      toggelActiveClass(activeItem)
+
+      $(".martial").each(function (i, obj) {
+        $(this).removeClass("active");
+      });
+      $(this).addClass("active");
+      $.ajax({
+        type: "GET",
+        url: "{% url 'course_service' %}",
+        headers: {
+          "X-Requested-With": "XMLHttpRequest",
+        },
+        data: {
+          action: "getMatrial",
+          martialId: $(this).attr("martialId"),
+          csrfmiddlewaretoken: "{{ csrf_token }}",
+        },
+        success: function (response) {
+          //  alert(response.content);
+          console.log("content served");
+          console.log(response.content);
+          $("#backendView").html(response.content);
+        },
+        error: function (response) {
+          // alert(response);
+        },
+      });
+
+
+
+    });
+
+    function updateSingleCourseProgressPerUser(courseId) {
+      console.log("updateSingleCourseProgressPerUser");
+      $.ajax({
+        type: "GET",
+        url: "{% url 'course_service' %}",
+        headers: {
+          "X-Requested-With": "XMLHttpRequest",
+        },
+        data: {
+          action: "updateSingleCourseProgressPerUser",
+          courseId: courseId,
+          userId: "{{ request.user.id }}",
+          csrfmiddlewaretoken: "{{ csrf_token }}",
+        },
+        success: function (response) {
+          //  alert(response.content);
+          console.log("content served");
+          console.log(response.content);
+          $('#progress').html(response.content);
+        },
+        error: function (response) {
+          // alert(response);
+        },
+      });
+    }
+
+    function getSingleCourseProgressPerUser() {
+      console.log("getSingleCourseProgressPerUser");
+      $.ajax({
+        type: "GET",
+        url: "{% url 'course_service' %}",
+        headers: {
+          "X-Requested-With": "XMLHttpRequest",
+        },
+        data: {
+          action: "getSingleCourseProgressPerUser",
+          courseId: $("#courseId").val(),
+          //csrfmiddlewaretoken: "{{ csrf_token }}",
+        },
+        success: function (response) {
+          //  alert(response.content);
+          console.log("content served");
+          console.log(response.content);
+          $('#progress').html(response.content);
+        },
+        error: function (response) {
+          // alert(response);
+        },
+      });
+    }
+
+
+    $('.result').on('click', function () {
+      var courseId = $(this).attr('courseId');
+      console.log("result")
+      console.log(courseId)
+
+      $.ajax({
+        type: "POST",
+        url: "{% url 'course_service' %}",
+        headers: {
+          "X-Requested-With": "XMLHttpRequest",
+        },
+        data: {
+          action: "getResults",
+          courseId: courseId,
+          csrfmiddlewaretoken: "{{ csrf_token }}",
+        },
+        success: function (response) {
+          //  alert(response.content);
+
+          console.log("response.status")
+          console.log(response.status)
+          if (response.status) {
+            $("#backendView").html(response.content);
+          } else {
+            // alert("Please complete all questions ")
+            swal("Oops!", "Please complete all questions", "error");
+          }
+
+
+        },
+        error: function (response) {
+          // alert(response);
+        },
+      });
+
+    });
+
+
+
+  </script>
+</body>
+
+</html>

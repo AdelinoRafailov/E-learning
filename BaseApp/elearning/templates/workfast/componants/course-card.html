@@ -1,0 +1,16 @@
+{% for course in courses %}
+<div class="col mb-4 text-left course" style="padding: 1px">
+  <a href="{% url 'course_details' course.id %}">
+    <div class="card border rounded" style="height: 100%">
+      <img class="card-img-top w-100 d-block fit-cover" src="{{course.img}}" style="padding: 56px" />
+      <div class="progress border rounded-0" style="font-size: 12px; height: 15px; border-style: solid; border-color: rgb(255, 255, 255)">
+        <div class="progress-bar bg-info" aria-valuenow="{{course.progress}}" aria-valuemin="0" aria-valuemax="100" style="width: {{course.progress}}%">{{course.progress}}%</div>
+      </div>
+      <div class="card-body p-4 course-body" style="background: #e2e2e2">
+        <h4 class="font-weight-bold card-title">{{course.name}}</h4>
+        <p class="card-text">{{ course.shortdes }}</p>
+      </div>
+    </div>
+  </a>
+</div>
+{% endfor %} {% comment %} Course card end {% endcomment %}

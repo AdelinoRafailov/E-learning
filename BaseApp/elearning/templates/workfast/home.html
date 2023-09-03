@@ -1,0 +1,114 @@
+{% extends 'workfast/com/base.html' %} {% block content %}
+
+<section style="margin-top: -3%">
+  {% comment %}
+  <div data-bss-parallax-bg="true" style="height: 600px; background-image: url('media/background.jpg'); background-position: center; background-size: cover"></div>
+  {% endcomment %}
+
+  <div data-bss-parallax-bg="true" style="height: 600px; background-position: center; background-size: cover">
+    <video style="width: 100%" id="background-video" autoplay loop muted poster="https://assets.codepen.io/6093409/river.jpg">
+      <source src="media/background.mp4" type="video/mp4" />
+    </video>
+  </div>
+
+  <marquee style="padding: 31px 10px; font-size: 200%; background: #c9f31d" scrollamount="10">
+    <div class="course-Marque">
+      {% for c in course %}
+      <span style="color: black; margin-right: 100px"><span></span> {{c.name}} </span>
+      {% endfor %}
+    </div>
+  </marquee>
+
+  {% comment %}
+  <div style="background-image: url('media/background.jpg'); background-position: center; background-size: cover">
+    {% endcomment %} {% comment %} <img src="media/background.jpg" style="width: 100%" /> {% endcomment %}
+  </div>
+</section>
+<div
+  class="text-nowrap d-flex justify-content-center align-items-center animated-text noSelect"
+  style="background: rgba(255, 255, 255, 0); border-style: none; margin-top: 16px; margin-right: auto; margin-left: auto"
+>
+  <div class="caption v-middle text-center">
+    <h1 class="cd-headline clip">
+      <span class="blc"></span><span class="blc" style="color: black; font-weight: bold">Career:</span>
+      <span class="cd-words-wrapper">
+        <b class="is-visible">Designer <img src="media/employ-icon.png"/></b>
+        <b>Developer  <img src="media/employ-icon.png"/></b>
+        <b>Engineer  <img src="media/employ-icon.png"/></b>
+        <b>Data analyst  <img src="media/employ-icon.png"/></b>
+      </span>
+      <span class="blinking">|</span>
+    </h1>
+  </div>
+</div>
+<div class="container py-4 py-xl-5">
+  <div class="row mb-5">
+    <div class="col-md-8 col-xl-10 text-center mx-auto">
+      <h2 class="font-weight-bold"><span style="font-weight: normal !important">Upgrade your career with the best online training led by top experts.</span><br /></h2>
+      <p class="w-lg-50">Boost your confidence, master the field, become a certified professional<br /></p>
+      <a href="{% url 'signup' %}" style="border: 1px solid black" class="button btn-outline-dark rounded-6" type="button" data-hover="CONTACT US"><span class="text-dark">Become Expert</span></a>
+    </div>
+  </div>
+</div>
+<div id="counters-board" class="container py-4 py-xl-5" data-aos="fade" data-aos-duration="950">
+  <div class="row row-cols-2 row-cols-md-4">
+    <div class="col">
+      <div class="text-center d-flex flex-column justify-content-center align-items-center p-3">
+        <div class="bs-icon-xl bs-icon-circle d-flex flex-shrink-0 justify-content-center align-items-center d-inline-block mb-2 bs-icon bs-icon-lg">
+          <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-bell text-dark">
+            <path
+              d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zM8 1.918l-.797.161A4.002 4.002 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4.002 4.002 0 0 0-3.203-3.92L8 1.917zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5.002 5.002 0 0 1 13 6c0 .88.32 4.2 1.22 6z"
+            ></path>
+          </svg>
+        </div>
+        <div class="px-3">
+          <h2 class="font-weight-bold mb-0 counter-count" step-value="123234">0</h2>
+          <p class="mb-0">Erat netus</p>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="text-center d-flex flex-column justify-content-center align-items-center p-3">
+        <div class="bs-icon-xl bs-icon-circle d-flex flex-shrink-0 justify-content-center align-items-center d-inline-block mb-2 bs-icon bs-icon-lg">
+          <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-book-half text-dark">
+            <path
+              d="M8.5 2.687c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492V2.687zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783z"
+            ></path>
+          </svg>
+        </div>
+        <div class="px-3">
+          <h2 class="font-weight-bold mb-0 counter-count" step-value="334">0</h2>
+          <p class="mb-0">Course</p>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="text-center d-flex flex-column justify-content-center align-items-center p-3">
+        <div class="bs-icon-xl bs-icon-circle d-flex flex-shrink-0 justify-content-center align-items-center d-inline-block mb-2 bs-icon bs-icon-lg">
+          <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-person-circle text-dark">
+            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"></path>
+            <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"></path>
+          </svg>
+        </div>
+        <div class="px-3">
+          <h2 class="font-weight-bold mb-0 counter-count" step-value="34422">0</h2>
+          <p class="mb-0">Professionals</p>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="text-center d-flex flex-column justify-content-center align-items-center p-3">
+        <div class="bs-icon-xl bs-icon-circle d-flex flex-shrink-0 justify-content-center align-items-center d-inline-block mb-2 bs-icon bs-icon-lg">
+          <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-clock-fill text-dark">
+            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"></path>
+          </svg>
+        </div>
+        <div class="px-3">
+          <h2 class="font-weight-bold mb-0 counter-count" step-value="34">0</h2>
+          <p class="mb-0">Minutes online course</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,98 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
+    <title>Contact Us</title>
+    <link rel="stylesheet" href="{% static 'workfast/assets/bootstrap/css/bootstrap.min.css' %}" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Aclonica&amp;display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Adamina&amp;display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Aguafina+Script&amp;display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Akaya+Kanadaka&amp;display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Akaya+Telivigala&amp;display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Aldrich&amp;display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web:400,600,700" />
+    <link rel="stylesheet" href="{% static 'workfast/assets/css/aos.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'workfast/assets/css/Animated-Typing-With-Blinking.css' %}" />
+    <link rel="stylesheet" href="{% static 'workfast/assets/css/Button-Change-Text-on-Hover.css' %}" />
+    <link rel="stylesheet" href="{% static 'workfast/assets/css/Carousel_Image_Slider-mycarousel.css' %}" />
+    <link rel="stylesheet" href="{% static 'workfast/assets/css/Carousel_Image_Slider.css' %}" />
+    <link rel="stylesheet" href="{% static 'workfast/assets/css/Collapsible-Sidebar.css' %}" />
+    <link rel="stylesheet" href="{% static 'workfast/assets/css/Hero-Carousel-images.css' %}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/css/swiper.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'workfast/assets/css/Login-Center.css' %}" />
+    <link rel="stylesheet" href="{% static 'workfast/assets/css/Navbar-Right-Links-icons.css' %}" />
+    <link rel="stylesheet" href="{% static 'workfast/assets/css/Off-Canvas-Sidebar-Drawer-Navbar.css' %}" />
+    <link rel="stylesheet" href="{% static 'workfast/assets/css/Search-Input-responsive.css' %}" />
+    <link rel="stylesheet" href="{% static 'workfast/assets/css/Sidebar-Menu-sidebar.css' %}" />
+    <link rel="stylesheet" href="{% static 'workfast/assets/css/Sidebar-Menu.css' %}" />
+    <link rel="stylesheet" href="{% static 'workfast/assets/css/Simple-Slider-Simple-Slider.css' %}" />
+    <link rel="stylesheet" href="{% static 'workfast/assets/css/Video-Responsive.css' %}" />
+  </head>
+
+  <body style="background: white">
+    <div class="container" data-aos="fade" data-aos-delay="400" style="height: 720.5px">
+      <div class="row row-login">
+        <div class="col-10 col-sm-6 col-md-4 offset-1 offset-sm-3 offset-md-4" style="background: #282c34; border-radius: 10px; border: 0.2px solid var(--gray)">
+          <h1 class="text-center" style="color: rgb(255, 255, 255);font-family: cursive;">Contact Us</h1>
+          <div class="card" style="background: rgba(255, 255, 255, 0)">
+            <div class="card-body" style="color: rgb(255, 255, 255)">
+              <form action="{% url 'signup' %}" method="POST">
+                {% csrf_token %}
+                {% comment %} <div class="form-group">
+                  <label>Username</label>
+                  <input value="{{data.username}}" name="username" class="form-control" type="text" style="color: rgb(255, 255, 255); background: var(--secondary)" />
+                </div> {% endcomment %}
+                <div class="form-group">
+                   <label style="color:#c16eb3;">Name</label>
+                  <input name="name" class="form-control" type="text" style="color: rgb(255, 255, 255); background: var(--secondary)" />
+                </div>
+                <div class="form-group">
+                   <label style="color:#c16eb3;">Last name</label>
+                  <input name="last_name" class="form-control" type="text" style="color: rgb(255, 255, 255); background: var(--secondary)" />
+                </div>
+                <div class="form-group">
+                   <label style="color:#c16eb3;">Email</label>
+                  <input  name="email" class="form-control" type="email" style="color: rgb(255, 255, 255); background: var(--secondary)" />
+                </div>
+                <div class="form-group">
+                   <label style="color:#c16eb3;">Message</label>
+                  <textarea name="message" class="form-control" type="text" style="color: rgb(255, 255, 255); background: var(--secondary)" ></textarea>
+                  {% comment %} <input value="{{data.email}}" name="email" class="form-control" type="email" style="color: rgb(255, 255, 255); background: var(--secondary)" /> {% endcomment %}
+                </div>
+                {% comment %} <div class="form-group">
+                  <label>Password </label>
+                  <input name="password" class="form-control" type="password" style="color: rgb(255, 255, 255); background: var(--secondary)" />
+                </div> {% endcomment %}
+                {% comment %} <div class="form-group">
+                  <label>Retype-Password </label>
+                  <input name="confirm_password" class="form-control" type="password" style="color: rgb(255, 255, 255); background: var(--secondary)" />
+                </div> {% endcomment %}
+                <div class="form-group"></div>
+                <br />
+                <div class="text-center">{% if messages %} {% for message in messages %} {{message}} {% endfor %} {% endif %}</div>
+                <br />
+                <button class="btn btn-outline-info btn-block" type="submit">Send</button>
+                {% comment %} <a class="btn btn-link center-block" role="button" href="#">Forget Password?</a> {% endcomment %}
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="{% static 'workfast/assets/js/jquery.min.js' %}"></script>
+    <script src="{% static 'workfast/assets/bootstrap/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'workfast/assets/js/aos.min.js' %}"></script>
+    <script src="{% static 'workfast/assets/js/bs-init.js' %}"></script>
+    <script src="{% static 'workfast/assets/js/Off-Canvas-Sidebar-Drawer-Navbar.js' %}"></script>
+    <script src="{% static 'workfast/assets/js/Off-Canvas-Sidebar-Drawer-Navbar-1.js' %}"></script>
+    <script src="{% static 'workfast/assets/js/Animated-Typing-With-Blinking.js' %}"></script>
+    <script src="{% static 'workfast/assets/js/Collapsible-Sidebar.js' %}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js' %}/1.14.0/umd/popper.min.js' %}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/js/swiper.jquery.min.js' %}"></script>
+    <script src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js' %}"></script>
+    <script src="{% static 'workfast/assets/js/Sidebar-Menu.js' %}"></script>
+    <script src="{% static 'workfast/assets/js/Simple-Slider.js' %}"></script>
+  </body>
+</html>

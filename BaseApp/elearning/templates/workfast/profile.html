@@ -1,0 +1,313 @@
+{% load static %} {% load custom_tags %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
+    <title>elearning</title>
+    <link rel="stylesheet" href="{% static 'workfast/assets/bootstrap/css/bootstrap.min.css' %}" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Aclonica&amp;display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Adamina&amp;display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Aguafina+Script&amp;display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Akaya+Kanadaka&amp;display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Akaya+Telivigala&amp;display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Aldrich&amp;display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web:400,600,700" />
+    <link rel="stylesheet" href="{% static 'workfast/assets/css/Animated-Typing-With-Blinking.css' %}" />
+    <link rel="stylesheet" href="{% static 'workfast/assets/css/Button-Change-Text-on-Hover.css' %}" />
+    <link rel="stylesheet" href="{% static 'workfast/assets/css/Carousel_Image_Slider-mycarousel.css' %}" />
+    <link rel="stylesheet" href="{% static 'workfast/assets/css/Carousel_Image_Slider.css' %}" />
+    <link rel="stylesheet" href="{% static 'workfast/assets/css/Collapsible-Sidebar.css' %}" />
+    <link rel="stylesheet" href="{% static 'workfast/assets/css/Hero-Carousel-images.css' %}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/css/swiper.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'workfast/assets/css/Login-Center.css' %}" />
+    <link rel="stylesheet" href="{% static 'workfast/assets/css/Navbar-Right-Links-icons.css' %}" />
+    <link rel="stylesheet" href="{% static 'workfast/assets/css/Off-Canvas-Sidebar-Drawer-Navbar.css' %}" />
+    <link rel="stylesheet" href="{% static 'workfast/assets/css/Search-Input-responsive.css' %}" />
+    <link rel="stylesheet" href="{% static 'workfast/assets/css/Sidebar-Menu-sidebar.css' %}" />
+    <link rel="stylesheet" href="{% static 'workfast/assets/css/Sidebar-Menu.css' %}" />
+    <link rel="stylesheet" href="{% static 'workfast/assets/css/Simple-Slider-Simple-Slider.css' %}" />
+    <link rel="stylesheet" href="{% static 'workfast/assets/css/Video-Responsive.css' %}" />
+
+    <style>
+      .course:hover {
+        color: white;
+        transition: 0.9s;
+      }
+    
+      .course:hover {
+        color: white;
+        transition: 0.9s;
+      }
+      .course:hover .course-body {
+        color: white;
+        background-color: black !important;
+      }
+      .course-body:hover {
+        background-color: black !important;
+        transition: 0.9s;
+      }
+
+      .navbar {
+        margin-bottom: 0px;
+      }
+    </style>
+  </head>
+
+  <body>
+    {% include 'workfast/com/navbar.html' %}
+    <div style="background-color: {% GetUI 'profile_counters' %}" class="profile_counters">
+      <div class="container py-4 py-xl-5">
+        <div class="text-center text-white rounded p-1" style="margin-top: 4%">
+          <div class="row row-cols-2 row-cols-md-4">
+            <div class="col">
+              <div class="p-3">
+                <p class="display-4 font-weight-bold text-white mb-0 counter-count" step-value="123">0</p>
+                <p></p>
+                <p class="mb-0">Erat netus</p>
+              </div>
+            </div>
+            <div class="col">
+              <div class="p-3">
+                <p class="display-4 font-weight-bold text-white mb-0 counter-count" step-value="233">0</p>
+                <p></p>
+                <p class="mb-0">Erat netus</p>
+              </div>
+            </div>
+            <div class="col">
+              <div class="p-3">
+                <p class="display-4 font-weight-bold text-white mb-0 counter-count" step-value="{{ Lectures }}">0</p>
+                <p></p>
+                <p class="mb-0">Lectures</p>
+              </div>
+            </div>
+            <div class="col">
+              <div class="p-3">
+                <p class="display-4 font-weight-bold text-white mb-0 counter-count" step-value="{{courses|length}}">0</p>
+                <p></p>
+                <p class="mb-0">courses enrolled</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="border-secondary" style="background: {% GetUI 'profile_counters' %}; margin-bottom: 0px">
+      <div class="container" style="text-align: center; margin-bottom: 0px; padding-bottom: 13px">
+        <a class="btn btn-outline-info rounded" data-toggle="collapse" aria-expanded="false" aria-controls="collapse-1" href="#collapse-1" role="button">&nbsp; &nbsp; Show&nbsp; &nbsp;&nbsp;</a>
+      </div>
+    </div>
+
+    {% comment %} Profile EDIT {% endcomment %}
+
+    <div class="container">
+      <div>
+        {% comment %} <a class="btn btn-primary" data-toggle="collapse" aria-expanded="false" aria-controls="collapse-1" href="#collapse-1" role="button">Show Content</a> {% endcomment %}
+        <div id="collapse-1" class="collapse" style="margin-top: 10px">
+          <div id="profile" class="container profile profile-view">
+            <div class="row">
+              <div class="col-md-12 alert-col relative">
+                {% comment %}
+                <div class="alert alert-info alert-dismissible absolue center" role="alert">
+                  <button class="close" type="button" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                  </button>
+                  <span>Profile save with success</span>
+                </div>
+                {% endcomment %}
+              </div>
+            </div>
+            <form>
+              <div class="form-row profile-row">
+                <div class="col-md-4 relative text-center">
+                  <div class="avatar text-center">
+                    {% comment %} start profile {% endcomment %}
+                    <div class="row" style="margin-top: 10%; margin-bottom: 0">
+                      <div class="col" style="padding: 0">
+                        <img src="{% static 'workfast/assets/img/Screenshot%202023-07-12%20011052.png' %}" style="width: 140px; margin-bottom: 3px" />
+                      </div>
+                    </div>
+                    {% comment %} end profile {% endcomment %}
+                    <div class="avatar-bg center"></div>
+                  </div>
+                  {% comment %} <input class="form-control-file form-control" type="file" name="avatar-file" /> {% endcomment %}
+                </div>
+                <div class="col-md-8" style="margin-bottom: 10px">
+                  <h1>Profile</h1>
+                  <hr />
+                  <div class="form-row">
+                    <div class="col-sm-12 col-md-6">
+                      <div class="form-group"><label>Firstname </label><input class="form-control" type="text" name="firstname" value="{{User.first_name}}" readonly /></div>
+                    </div>
+                    <div class="col-sm-12 col-md-6">
+                      <div class="form-group"><label>Lastname </label><input class="form-control" type="text" name="lastname" value="{{User.last_name}}" readonly /></div>
+                    </div>
+                  </div>
+                  <div class="form-group"><label>Email </label><input class="form-control" type="email" autocomplete="off" name="email" value="{{User.email}}" readonly /></div>
+                  {% comment %}
+                  <div class="form-row">
+                    <div class="col-sm-12 col-md-6">
+                      <div class="form-group"><label>Password </label><input class="form-control" type="password" name="password" autocomplete="off" required /></div>
+                    </div>
+
+                    <div class="col-sm-12 col-md-6">
+                      <div class="form-group"><label>Confirm Password</label><input class="form-control" type="password" name="confirmpass" autocomplete="off" required /></div>
+                    </div>
+                  </div>
+                  {% endcomment %}
+                  <hr />
+
+                  <div class="form-row">
+                    <div class="col-md-12 content-right">
+                      {% comment %} <button class="btn btn-outline-info form-btn" type="submit">Update</button> {% endcomment %} {% comment %}
+                      <button class="btn btn-danger form-btn" type="reset">CANCEL</button> {% endcomment %}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {% comment %} Profile EDIT {% endcomment %}
+
+    <div class="border-secondary" style="background: var(--info)">
+      <div class="container" style="text-align: center">
+        <div class="row" style="margin: 0; margin-bottom: 0">
+          <div class="col" style="padding: 0">
+            <img src="{% static 'workfast/assets/img/Screenshot%202023-07-12%20011052.png' %}" style="width: 140px; margin-bottom: 3px" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container py-4 py-xl-5">
+      <div class="row mb-4 mb-lg-5">
+        <div class="col-md-8 col-xl-6 text-center mx-auto">
+          <h2 class="font-weight-bold">Achievements<br /></h2>
+        </div>
+      </div>
+      <div class="row row-cols-2 row-cols-md-4">
+        <div class="col mb-4">
+          <div class="text-center">
+            <img class="rounded-circle mb-3 fit-cover" width="130" height="130" src="{% static 'workfast/assets/img/Python-logo-notext.svg.png' %}" />
+            <h5 class="font-weight-bold text-primary mb-0" style="color: rgb(0, 0, 0)"><span style="color: rgb(33, 37, 41)">Python Expert</span></h5>
+            <p class="text-muted mb-2">16 jul 2021</p>
+            <ul class="list-inline text-muted w-100 mb-0">
+              <li class="list-inline-item text-center">
+                <div class="d-flex flex-column align-items-center"></div>
+              </li>
+              <li class="list-inline-item text-center">
+                <div class="d-flex flex-column align-items-center"></div>
+              </li>
+              <li class="list-inline-item text-center">
+                <div class="d-flex flex-column align-items-center"></div>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col mb-4">
+          <div class="text-center">
+            <img class="rounded-circle mb-3 fit-cover" width="130" height="130" src="https://cdn.bootstrapstudio.io/placeholders/1400x800.png" />
+            <h5 class="font-weight-bold text-primary mb-0">
+              <strong><span style="color: rgb(33, 37, 41)">Achievements</span></strong
+              ><br />
+            </h5>
+            <p class="text-muted mb-2">Erat netus</p>
+          </div>
+        </div>
+        <div class="col mb-4">
+          <div class="text-center">
+            <img class="rounded-circle mb-3 fit-cover" width="130" height="130" src="https://cdn.bootstrapstudio.io/placeholders/1400x800.png" />
+            <h5 class="font-weight-bold text-primary mb-0">
+              <strong><span style="color: rgb(33, 37, 41)">Achievements</span></strong
+              ><br />
+            </h5>
+            <p class="text-muted mb-2">Erat netus</p>
+          </div>
+        </div>
+        <div class="col mb-4">
+          <div class="text-center">
+            <img class="rounded-circle mb-3 fit-cover" width="130" height="130" src="https://cdn.bootstrapstudio.io/placeholders/1400x800.png" />
+            <h5 class="font-weight-bold text-primary mb-0">
+              <strong><span style="color: rgb(33, 37, 41)">Achievements</span></strong
+              ><br />
+            </h5>
+            <p class="text-muted mb-2">Erat netus</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="background: #f1f1f1">
+      <div class="container py-4 py-xl-5">
+        <div class="row mb-5">
+          <div class="col">
+            <h2 class="font-weight-bold">Courses</h2>
+          </div>
+          <div class="col-md-8 col-xl-6 text-center mx-auto"></div>
+        </div>
+        <div class="container py-4 py-xl-5">
+          <div class="row row-cols-1 row-cols-md-2 row-cols-xl-4">
+            {% for course in courses %}
+            <div class="col mb-4 text-left course" style="padding: 1px">
+              <a href="{% url 'course_details' course.id %}">
+                <div class="card border rounded" style="height: 100%">
+                  <img class="card-img-top w-100 d-block fit-cover" src="{{course.img}}" style="padding: 56px" />
+                  <div class="progress border rounded-0" style="font-size: 12px; height: 15px; border-style: solid; border-color: rgb(255, 255, 255)">
+                    <div class="progress-bar bg-info" aria-valuenow="{{course.progress}}" aria-valuemin="0" aria-valuemax="100" style="width: {{course.progress}}%">{{course.progress}}%</div>
+                  </div>
+                  <div class="card-body p-4 course-body" style="background: #e2e2e2">
+                    <h4 class="font-weight-bold card-title">{{course.name}}</h4>
+                    <small class="text-justify">{% getDueDate request.user course.id %}</small>
+                    <p class="card-text text-justify">{{ course.shortdes }}</p>
+                  </div>
+                </div>
+              </a>
+            </div>
+            {% endfor %} {% comment %} Course card end {% endcomment %}
+          </div>
+          <div class="text-center text-info" style="width: 100%">
+            {% comment %} <button class="btn btn-outline-info border rounded-pill" type="button">More</button> {% endcomment %}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {% include 'workfast/com/footer.html' %}
+
+    <script src="{% static 'workfast/assets/js/jquery.min.js' %}"></script>
+    <script src="{% static 'workfast/assets/bootstrap/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'workfast/assets/js/bs-init.js' %}"></script>
+    <script src="{% static 'workfast/assets/js/Off-Canvas-Sidebar-Drawer-Navbar.js' %}"></script>
+    <script src="{% static 'workfast/assets/js/Off-Canvas-Sidebar-Drawer-Navbar-1.js' %}"></script>
+    <script src="{% static 'workfast/assets/js/Animated-Typing-With-Blinking.js' %}"></script>
+    <script src="{% static 'workfast/assets/js/Collapsible-Sidebar.js' %}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js' %}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/js/swiper.jquery.min.js' %}"></script>
+    <script src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js' %}"></script>
+    <script src="{% static 'workfast/assets/js/Sidebar-Menu.js' %}"></script>
+    <script src="{% static 'workfast/assets/js/Simple-Slider.js' %}"></script>
+
+    <script>
+      $(".counter-count").each(function () {
+        $(this)
+          .prop("Counter", 0)
+          .animate(
+            {
+              Counter: $(this).attr("step-value"),
+            },
+            {
+              duration: 5000,
+              easing: "swing",
+              step: function (now) {
+                $(this).text(Math.ceil(now));
+              },
+            }
+          );
+      });
+    </script>
+  </body>
+</html>
